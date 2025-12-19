@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    color: #2d3748;
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    color: #4a5568;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currency {
+    position: absolute;
+    left: 15px;
+    color: #718096;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 15px 15px 15px 60px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+#customTip,
+#numPeople {
+    padding-left: 15px;
+}
+
+input[type="number"]:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.tip-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.tip-btn {
+    padding: 15px;
+    border: 2px solid #e2e8f0;
+    background: white;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #4a5568;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tip-btn:hover {
+    border-color: #667eea;
+    background: #f7fafc;
+}
+
+.tip-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.results {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 30px 0;
+}
+
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.result-row:last-child {
+    margin-bottom: 0;
+}
+
+.result-label {
+    color: #e2e8f0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.result-value {
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.result-row.total {
+    padding-top: 15px;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    margin-top: 10px;
+}
+
+.result-row.total .result-value {
+    font-size: 24px;
+}
+
+.reset-btn {
+    width: 100%;
+    padding: 15px;
+    background: #fc8181;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+    background: #f56565;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(252, 129, 129, 0.3);
+}
+
+.reset-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .tip-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
