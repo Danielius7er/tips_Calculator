@@ -17,7 +17,6 @@ let selectedTipPercent = 15;
 // Event listeners para os botões de gorjeta
 tipButtons.forEach(btn => {
     btn.addEventListener('click', function() {
-        // Remove a classe active de todos os botões
         tipButtons.forEach(b => b.classList.remove('active'));
         
         this.classList.add('active');
