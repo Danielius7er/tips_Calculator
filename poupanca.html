@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
         @import url('poupe.css');
@@ -11,13 +11,13 @@
 <body>
     <main>
         <header>
-            <h1>Bem Vindo a Poupança</h1>
+            <h1>Bem Vindo à Poupança</h1>
         </header>
         <section class="info">
             <article>
                 Poupança é a parte do rendimento que não é gasta imediatamente, mas reservada para uso futuro. Pode ser guardada em contas bancárias, investimentos ou até mesmo em casa. A poupança é importante para garantir segurança financeira, enfrentar emergências e alcançar objetivos de longo prazo, como a compra de uma casa ou a aposentadoria.
             </article>
-            <br> <br>
+            <br><br>
             <div>
                 <h2>Dicas para Economizar Dinheiro</h2>
                 <ul>
@@ -28,13 +28,13 @@
                     <li>Considere automatizar suas economias com transferências automáticas para uma conta poupança.</li>
                 </ul>
             </div>
-            </section>
+        </section>
+        <br>
+        <section class="app">
+            <h2>Calculadora da Poupança</h2>
             <br>
-            <section class="app">
-                <h2>Calculadora da Poupança</h2>
-                <br>
             <div class="poupe">
-                 <label for="poupeAmount">Valor da Conta</label>
+                <label for="poupeAmount">Valor da Conta</label>
                 <div class="input-wrapper">
                     <span class="currency">AOA</span>
                     <input type="number" id="poupeAmount" placeholder="0.00" step="0.01" min="0">
@@ -50,7 +50,7 @@
                     <button class="tip-btn" data-tip="25">25%</button>
                 </div>
             </div>
-             <div class="input-group">
+            <div class="input-group">
                 <label for="customTip">Poupança Personalizada (%)</label>
                 <input type="number" id="customTip" placeholder="Ex: 18" min="0" max="100">
             </div>
@@ -61,7 +61,7 @@
                     <span class="result-value" id="tipAmount">0.00 AOA</span>
                 </div>
                 <div class="result-row">
-                    <span class="result-label">Dinheiro poupador por Mês</span>
+                    <span class="result-label">Dinheiro poupado por Mês</span>
                     <span class="result-value" id="tipPerPerson">0.00 AOA</span>
                 </div>
                 <div class="result-row total">
@@ -74,13 +74,11 @@
                 </div>
             </div>
 
-            <button class="result-btn" type="submit">Resultado</button>
-            <br> <br>
+            <button class="result-btn" type="button">Calcular Resultado</button>
+            <br><br>
             <button class="reset-btn" id="resetBtn">Limpar</button>
-            </section>
+        </section>
     </main>
     <footer>
-        <nav><a href="index.html"><Button class="button">Calculadora de Gorjetas</Button></a></nav>
+        <nav><a href="index.html"><button class="button">Calculadora de Gorjetas</button></a></nav>
     </footer>
-</body>
-</html>
