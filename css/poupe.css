@@ -1,136 +1,265 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #102895 0%, #14525a 100%);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-}
-h1 {
-    color: #b80e0e;
-    border-color: limegreen;
-    font-weight: bold;
-    border: limegreen;
-    font-size: 28px;
-    margin-bottom: 30px;
-    text-align: center;
-}
-.app {
-    width: 100%;
-    max-width: 800px;
-    display: block;
-    align-items: center;
-    justify-content: center;
-}
-.poupe {
-    background: white;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-}
-.results {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 15px;
-    padding: 25px;
-    margin: 30px 0;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1192ce 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-.result-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
 
-.result-row:last-child {
-    margin-bottom: 0;
-}
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-.result-label {
-    color: #e2e8f0;
-    font-size: 14px;
-    font-weight: 500;
-}
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
 
-.result-value {
-    color: white;
-    font-size: 20px;
-    font-weight: 700;
-}
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
 
-.result-row.total {
-    padding-top: 15px;
-    border-top: 2px solid rgba(255, 255, 255, 0.2);
-    margin-top: 10px;
-}
+        .info {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
 
-.result-row.total .result-value {
-    font-size: 24px;
-}
-.result-btn {
-    width: 100%;
-    padding: 15px;
-    background: #fc8181;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-.result-btn:hover {
-    background: #b21111;
-}
-.reset-btn {
-    width: 100%;
-    padding: 15px;
-    background: #fc8181;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-.reset-btn:hover {
-    background: #b21111;
-}
-.reset-btn:active {
-    background: #f56565;
-}
-.reset-btn::after{
-    box-shadow: 0 10px 20px rgba(252, 129, 129, 0.3);
-}
-.button-tip {
-    background-color: rgb(35, 79, 182);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-.button-tip:hover {
-    background-color: rgb(25, 57, 130);
-}
-footer {
-    width: 100%;
-    height: max-content;
-    position: absolute;
-    bottom: -700px;
-    left: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        article {
+            line-height: 1.8;
+            color: #555;
+            text-align: justify;
+        }
 
-}
+        ul {
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .app {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .poupe, .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .currency {
+            position: absolute;
+            left: 15px;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 15px 15px 15px 60px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1.1em;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        #customTip {
+            padding-left: 15px;
+        }
+
+        .tip-buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .tip-btn {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tip-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .tip-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .results {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .result-row:last-child {
+            border-bottom: none;
+        }
+
+        .result-row.total {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .result-label {
+            font-weight: 600;
+        }
+
+        .result-value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .result-row.total .result-value {
+            color: white;
+        }
+
+        .result-btn, .reset-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+       .result-btn {
+        width: 100%;
+        padding: 15px;
+        background: #fc8181;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+        .result-btn:hover {
+        background: #b21111;
+        }
+
+            .reset-btn {
+                background: #e0e0e0;
+                color: #333;
+            }
+
+        .reset-btn:hover {
+            background: #d0d0d0;
+        }
+        .button-tip {
+        background-color: rgb(35, 79, 182);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+        .button-tip:hover {
+        background-color: rgb(25, 57, 130);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .button {
+            padding: 15px 30px;
+            background: white;
+            color: #112da9;
+            border: 2px solid white;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .button:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .tip-buttons {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
