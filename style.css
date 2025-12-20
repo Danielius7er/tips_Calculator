@@ -13,6 +13,32 @@ body {
     justify-content: center;
     padding: 20px;
 }
+main {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.button{
+    background-color: #0f0e0e;
+    border: none;
+    color: #667eea;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
 .container {
     width: 100%;

@@ -20,7 +20,6 @@ tipButtons.forEach(btn => {
         // Remove a classe active de todos os botões
         tipButtons.forEach(b => b.classList.remove('active'));
         
-        // Adiciona active ao botão clicado
         this.classList.add('active');
         
         // Atualiza a percentagem selecionada
@@ -29,7 +28,6 @@ tipButtons.forEach(btn => {
         // Limpa o input personalizado
         customTipInput.value = '';
         
-        // Calcula
         calculateTip();
     });
 });
