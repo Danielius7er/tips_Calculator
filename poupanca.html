@@ -5,9 +5,36 @@
     <meta name="description" content="Calculadora de Gorjetas e Poupança">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script> -->
     <title>Document</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
     <style>
         @import url('css/poupe.css');
+        
+        .charts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .chart-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .chart-box h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        canvas {
+            max-width: 100%;
+            height: auto !important;
+        }
     </style>
 </head>
 <body>
@@ -80,10 +107,225 @@
             <br><br>
             <button class="reset-btn" id="resetBtn">Limpar</button>
         </section>
+        <section class="charts-section">
+            <h2 style="text-align: center; color: #667eea; margin-bottom: 20px;">📊 Visualização de Poupança</h2>
+            
+            <div class="charts-container">
+                <!-- Gráfico de Pizza -->
+                <div class="chart-box">
+                    <h3>Distribuição Mensal</h3>
+                    <canvas id="pieChart"></canvas>
+                </div>
+
+                <!-- Gráfico de Barras -->
+                <div class="chart-box">
+                    <h3>Crescimento Anual</h3>
+                    <canvas id="barChart"></canvas>
+                </div>
+
+                <!-- Gráfico de Linha -->
+                <div class="chart-box">
+                    <h3>Projeção 5 Anos</h3>
+                    <canvas id="lineChart"></canvas>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
         <nav><a href="index.html"><button class="button-tip">Calculadora de Gorjetas</button></a></nav>
     </footer>
-    <script src="js/poupe.js"></script>
+   <!-- <script src="js/poupe.js"></script> -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+    <script>
+       let selectedTip = 15;
+        let pieChart, barChart, lineChart;
+
+        const tipBtns = document.querySelectorAll('.tip-btn');
+        const customTipInput = document.getElementById('customTip');
+        const poupeAmountInput = document.getElementById('poupeAmount');
+        const resultBtn = document.querySelector('.result-btn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        // Inicializar gráficos
+        function initCharts() {
+            // Gráfico de Pizza - Distribuição Mensal
+            const pieCtx = document.getElementById('pieChart').getContext('2d');
+            pieChart = new Chart(pieCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Poupança', 'Gastos'],
+                    datasets: [{
+                        data: [0, 100],
+                        backgroundColor: [
+                            '#667eea',
+                            '#e0e0e0'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            // Gráfico de Barras - Crescimento Anual
+            const barCtx = document.getElementById('barChart').getContext('2d');
+            barChart = new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    datasets: [{
+                        label: 'Poupança Acumulada (AOA)',
+                        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                        backgroundColor: '#667eea',
+                        borderColor: '#5568d3',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Gráfico de Linha - Projeção
+            const lineCtx = document.getElementById('lineChart').getContext('2d');
+            lineChart = new Chart(lineCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Ano 1', 'Ano 2', 'Ano 3', 'Ano 4', 'Ano 5'],
+                    datasets: [{
+                        label: 'Poupança Total (AOA)',
+                        data: [0, 0, 0, 0, 0],
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Atualizar gráficos com novos dados
+        function updateCharts(savingsAmount, totalAmount, yearlyTotal) {
+            // Atualizar Gráfico de Pizza
+            pieChart.data.datasets[0].data = [savingsAmount, totalAmount];
+            pieChart.update();
+
+            // Atualizar Gráfico de Barras (acumulado mensal)
+            const monthlyData = [];
+            for (let i = 1; i <= 12; i++) {
+                monthlyData.push(savingsAmount * i);
+            }
+            barChart.data.datasets[0].data = monthlyData;
+            barChart.update();
+
+            // Atualizar Gráfico de Linha (projeção 5 anos)
+            const yearlyData = [];
+            for (let i = 1; i <= 5; i++) {
+                yearlyData.push(yearlyTotal * i);
+            }
+            lineChart.data.datasets[0].data = yearlyData;
+            lineChart.update();
+        }
+
+        tipBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                tipBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedTip = parseFloat(this.dataset.tip);
+                customTipInput.value = '';
+            });
+        });
+
+        customTipInput.addEventListener('input', function() {
+            if (this.value) {
+                tipBtns.forEach(b => b.classList.remove('active'));
+                selectedTip = parseFloat(this.value) || 0;
+            }
+        });
+
+        resultBtn.addEventListener('click', calculateSavings);
+
+        function calculateSavings() {
+            const amount = parseFloat(poupeAmountInput.value) || 0;
+            
+            if (amount <= 0) {
+                alert('Por favor, insira um valor válido!');
+                return;
+            }
+
+            const savingsPercentage = selectedTip;
+            const savingsAmount = (amount * savingsPercentage) / 100;
+            const monthlySavings = savingsAmount;
+            const yearlyTotal = savingsAmount * 12;
+            const monthlyTotal = amount - savingsAmount;
+
+            document.getElementById('tipAmount').textContent = savingsAmount.toFixed(2) + ' AOA';
+            document.getElementById('tipPerPerson').textContent = monthlySavings.toFixed(2) + ' AOA';
+            document.getElementById('totalAmount').textContent = yearlyTotal.toFixed(2) + ' AOA';
+            document.getElementById('totalPerPerson').textContent = monthlyTotal.toFixed(2) + ' AOA';
+
+            // Atualizar gráficos
+            updateCharts(savingsAmount, monthlyTotal, yearlyTotal);
+        }
+
+        resetBtn.addEventListener('click', function() {
+            poupeAmountInput.value = '';
+            customTipInput.value = '';
+            selectedTip = 15;
+            
+            tipBtns.forEach(b => b.classList.remove('active'));
+            tipBtns[2].classList.add('active');
+            
+            document.getElementById('tipAmount').textContent = '0.00 AOA';
+            document.getElementById('tipPerPerson').textContent = '0.00 AOA';
+            document.getElementById('totalAmount').textContent = '0.00 AOA';
+            document.getElementById('totalPerPerson').textContent = '0.00 AOA';
+
+            // Reset dos gráficos
+            updateCharts(0, 100, 0);
+        });
+
+        poupeAmountInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateSavings();
+            }
+        });
+
+        customTipInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateSavings();
+            }
+        });
+
+        // Inicializar gráficos quando a página carregar
+        window.addEventListener('load', initCharts);
+    </script>
 </body>
 </html>
